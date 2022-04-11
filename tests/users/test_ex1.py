@@ -38,7 +38,6 @@ def test_session_example2(fixture_per_session):
 	num = fixture_per_session
 	assert num == 2
 
-
 @pytest.fixture
 def yield_fixture():
 	print('Start test phase')

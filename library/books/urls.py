@@ -4,7 +4,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'authors', views.AuthorViewSet)
-router.register(r'books-author', views.BooksAuthorsViewSet)
+router.register(r'book-author', views.BooksAuthorsViewSet)
 router.register(r'customers', views.CustomerViewSet)
 router.register(r'reviews', views.ReviewViewSet)
 router.register(r'publishers', views.PublisherViewSet)
