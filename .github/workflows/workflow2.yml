@@ -17,6 +17,7 @@ jobs:
       POSTGRES_HOST: "localhost"
       POSTGRES_DB: "jesus_uribedb"
       PORT: 19
+      JWT_TOKEN_TIME: 120
       DJANGO_SECRET_KEY: test-key-not-good
     services:
       postgres_main:
@@ -58,7 +59,6 @@ jobs:
       #     DB_HOST: ${{ env.POSTGRES_HOST }}
       #     DB_DATABASE: ${{ env.POSTGRES_DB }}
       #     DB_PORT: 5519
-      #     JWT_TOKEN_TIME: 120
       #   run: |
       #     python manage.py test
       - name: Make migrations
