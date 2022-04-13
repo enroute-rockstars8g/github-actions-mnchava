@@ -25,3 +25,6 @@ jobs:
       - name: Run docker containers
         run: |
           docker-compose --env-file .env.stg up --build -d
+      - name: Verify network
+        run: |
+          docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" postgres_db19
