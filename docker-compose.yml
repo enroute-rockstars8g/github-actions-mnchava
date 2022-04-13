@@ -13,7 +13,7 @@ services:
       - "${POSTGRES_VOLUME_PATH}:/usr/src/postgres"
     networks:
       - our-library-net
-    # command: -p 5519
+    command: -p 5519
 
   web19:
     build: .

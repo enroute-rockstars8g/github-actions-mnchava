@@ -32,6 +32,6 @@ jobs:
       - name: Verify django network
         run: |
           docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" django19
-      - name: Import database
-        run: |
-          docker exec postgres19 psql -h localhost -p 5519 -U jesus_uribe -d jesus_uribedb -f /usr/src/postgres/db_dump.sql
+      # - name: Import database
+      #   run: |
+      #     docker exec postgres19 psql -h localhost -p 5519 -U jesus_uribe -d jesus_uribedb -f /usr/src/postgres/db_dump.sql
