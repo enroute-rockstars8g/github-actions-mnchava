@@ -1,75 +1,32 @@
 name: GitHub Actions without Docker
 
-on:
-  workflow_call:
-  workflow_dispatch:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PSQL_USER: "jesus_uribe"
-      PSQL_PASS: 1701
-      PSQL_HOST: "localhost"
-      PSQL_DBNAME: "jesus_uribedb"
-      PORT: 19
-      JWT_TOKEN_TIME: 120
-      DJANGO_SECRET_KEY: test-key-not-good
+
     services:
-      postgres_main:
+      postgres:
         image: postgres:14
         env:
-          POSTGRES_USER: ${{ env.PSQL_USER }}
-          POSTGRES_PASSWORD: ${{ env.PSQL_PASS }}
-          POSTGRES_DB: ${{ env.PSQL_DBNAME }}
+          POSTGRES_USER: jesus_uribe
+          POSTGRES_PASSWORD: 1701
+          POSTGRES_DB: github_actions
         ports:
-          # - 5519:10019
           - 5432:5432
-        options: >-
-          --health-cmd pg_isready 
-          --health-interval 10s 
-          --health-timeout 5s 
-          --health-retries 5
-    # If you want to test multiple python version(s)
-    strategy:
-      matrix:
-        python-version: ["3.10"] # ["3.8", "3.9", "3.10"]
-    # Steps represent a sequence of tasks that will be executed as part of the job
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Setup Python ${{ matrix.python-version }}
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install requirements
+          python-version: 3.9
+      - name: Install dependencies
         run: |
           pip install -r requirements.txt
-      # - name: Run Tests
-      #   # Step specific environment variables
-      #   env:
-      #     DEBUG: "0"
-      #     DJANGO_SECRET_KEY: ${{ env.DJANGO_SECRET_KEY }}
-      #     DB_USERNAME: ${{ env.POSTGRES_USER }}
-      #     DB_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
-      #     DB_HOST: ${{ env.POSTGRES_HOST }}
-      #     DB_DATABASE: ${{ env.POSTGRES_DB }}
-      #     DB_PORT: 5519
-      #   run: |
-      #     python manage.py test
-      - name: Make migrations
-        run: |
-          python manage.py makemigrations
-      - name: Migrate
-        run: |
-          python manage.py migrate
-      - name: Run server
-        env:
-          PORT: 9019
-        run: |
-          python manage.py runserver 0.0.0.0:80${PORT}
+      - name: Run migrations
+        run: python manage.py migrate
+      - name: Run tests
+        run: python manage.py test
