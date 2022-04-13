@@ -12,10 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      POSTGRES_USER: "jesus_uribe"
-      POSTGRES_PASSWORD: 1701
-      POSTGRES_HOST: "localhost"
-      POSTGRES_DB: "jesus_uribedb"
+      PSQL_USER: "jesus_uribe"
+      PSQL_PASS: 1701
+      PSQL_HOST: "localhost"
+      PSQL_DBNAME: "jesus_uribedb"
       PORT: 19
       JWT_TOKEN_TIME: 120
       DJANGO_SECRET_KEY: test-key-not-good
@@ -23,9 +23,9 @@ jobs:
       postgres_main:
         image: postgres:14
         env:
-          POSTGRES_USER: ${{ env.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
-          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_USER: ${{ env.PSQL_USER }}
+          POSTGRES_PASSWORD: ${{ env.PSQL_PASS }}
+          POSTGRES_DB: ${{ env.PSQL_DBNAME }}
         ports:
           # - 5519:10019
           - 5432:5432
