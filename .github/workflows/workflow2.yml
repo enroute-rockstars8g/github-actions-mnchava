@@ -57,6 +57,6 @@ jobs:
           DB_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
           DB_HOST: ${{ env.POSTGRES_HOST }}
           DB_DATABASE: ${{ env.POSTGRES_DB }}
-          DB_PORT: 55${{ env.PORT }}
+          DB_PORT: 5519
         run: |
           python manage.py test
