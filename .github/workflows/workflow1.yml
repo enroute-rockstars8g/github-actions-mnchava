@@ -34,4 +34,4 @@ jobs:
           docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" django19
       - name: Import database
         run: |
-          docker exec postgres19 psql -h 0.0.0.0 -p 10019 -U jesus_uribe -d jesus_uribedb -f db_dump.sql
+          docker exec postgres19 psql -h 0.0.0.0 -p 5519 -U jesus_uribe -d jesus_uribedb -f db_dump.sql
