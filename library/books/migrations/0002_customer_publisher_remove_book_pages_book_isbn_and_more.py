@@ -7,52 +7,91 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('books', '0001_initial'),
+        ("books", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Customer',
+            name="Customer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('username', models.CharField(max_length=24, unique=True)),
-                ('email', models.CharField(max_length=254, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("username", models.CharField(max_length=24, unique=True)),
+                ("email", models.CharField(max_length=254, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Publisher',
+            name="Publisher",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=256)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=256)),
             ],
         ),
         migrations.RemoveField(
-            model_name='book',
-            name='pages',
+            model_name="book",
+            name="pages",
         ),
         migrations.AddField(
-            model_name='book',
-            name='isbn',
-            field=models.CharField(default='0000000000000', max_length=13),
+            model_name="book",
+            name="isbn",
+            field=models.CharField(default="0000000000000", max_length=13),
         ),
         migrations.AlterField(
-            model_name='book',
-            name='publish_year',
+            model_name="book",
+            name="publish_year",
             field=models.SmallIntegerField(default=2000),
         ),
         migrations.CreateModel(
-            name='Review',
+            name="Review",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('rating', models.PositiveSmallIntegerField()),
-                ('review', models.CharField(max_length=1024)),
-                ('book', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='books.book')),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='books.customer')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("rating", models.PositiveSmallIntegerField()),
+                ("review", models.CharField(max_length=1024)),
+                (
+                    "book",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING, to="books.book"
+                    ),
+                ),
+                (
+                    "customer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="books.customer",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='book',
-            name='publisher',
-            field=models.ForeignKey(default='0', on_delete=django.db.models.deletion.DO_NOTHING, to='books.publisher'),
+            model_name="book",
+            name="publisher",
+            field=models.ForeignKey(
+                default="0",
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                to="books.publisher",
+            ),
         ),
     ]

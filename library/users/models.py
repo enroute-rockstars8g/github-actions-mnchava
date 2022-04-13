@@ -1,3 +1,9 @@
-from django.db import models
+# from django.db import models
 
-# Create your models here.
+# class User(User):
+
+# 	def Meta():
+# 		proxy = True
+
+# 	def __str__(self):
+# 		return f'User {self.username}'

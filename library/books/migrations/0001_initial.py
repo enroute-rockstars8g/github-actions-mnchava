@@ -8,41 +8,80 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Author',
+            name="Author",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=128)),
-                ('last_name', models.CharField(max_length=128, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=128)),
+                ("last_name", models.CharField(max_length=128, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Book',
+            name="Book",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=256)),
-                ('publish_year', models.SmallIntegerField()),
-                ('pages', models.SmallIntegerField()),
-                ('price', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('created_at', models.DateTimeField(auto_now_add=True, null=True)),
-                ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=256)),
+                ("publish_year", models.SmallIntegerField()),
+                ("pages", models.SmallIntegerField()),
+                ("price", models.DecimalField(decimal_places=2, max_digits=6)),
+                ("created_at", models.DateTimeField(auto_now_add=True, null=True)),
+                ("updated_at", models.DateTimeField(auto_now=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='BooksAuthors',
+            name="BooksAuthors",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='AuthorWithBooks', to='books.author')),
-                ('book', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='BookWithAuthors', to='books.book')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="AuthorWithBooks",
+                        to="books.author",
+                    ),
+                ),
+                (
+                    "book",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="BookWithAuthors",
+                        to="books.book",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='book',
-            name='authors',
-            field=models.ManyToManyField(through='books.BooksAuthors', to='books.author'),
+            model_name="book",
+            name="authors",
+            field=models.ManyToManyField(
+                through="books.BooksAuthors", to="books.author"
+            ),
         ),
     ]
