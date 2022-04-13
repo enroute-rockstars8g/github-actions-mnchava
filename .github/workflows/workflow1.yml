@@ -28,6 +28,10 @@ jobs:
       - name: Verify postgres network
         run: |
           docker inspect -f "{{range.NetworkSettings.Networks}}{{.}}{{end}}" postgres19
+          docker port postgres19
       - name: Verify django network
         run: |
           docker inspect -f "{{range.NetworkSettings.Networks}}{{.}}{{end}}" django19
+      - name: Import database
+        run: |
+          docker exec postgres19 psql -h localhost -p 5519 -U jesus_uribe -d jesus_uribedb < db_dump.sql
