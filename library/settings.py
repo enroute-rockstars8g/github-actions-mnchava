@@ -108,8 +108,6 @@ REST_FRAMEWORK = {
 
 from datetime import timedelta
 
-print(env.get('JWT_TOKEN_TIME'))
-
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=int(env.get('JWT_TOKEN_TIME'))),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
