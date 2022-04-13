@@ -5,7 +5,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      JWT_TOKEN_TIME: 120
     services:
       postgres:
         image: postgres:14
