@@ -11,7 +11,7 @@ jobs:
       PSQL_USERNAME: jesus_uribe
       PSQL_PASS: 1701
       PSQL_HOST: localhost
-      PSQL_PORT: 5519
+      PSQL_PORT: 5432
     services:
       postgres:
         image: postgres:14

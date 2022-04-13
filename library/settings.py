@@ -105,7 +105,7 @@ if os.environ.get('GITHUB_WORKFLOW'):
            'USER': 'postgres',
            'PASSWORD': 'postgres',
            'HOST': 'localhost',
-           'PORT': 'env.get("PSQL_PORT")',
+           'PORT': '5432',
         }
     }
 
