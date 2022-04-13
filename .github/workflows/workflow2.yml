@@ -12,10 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      POSTGRES_USER: jesus_uribe
+      POSTGRES_USER: "jesus_uribe"
       POSTGRES_PASSWORD: 1701
-      POSTGRES_HOST: localhost
-      POSTGRES_DB: jesus_uribedb
+      POSTGRES_HOST: "localhost"
+      POSTGRES_DB: "jesus_uribedb"
       PORT: 19
       DJANGO_SECRET_KEY: test-key-not-good
     services:
