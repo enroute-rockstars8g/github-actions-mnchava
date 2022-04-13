@@ -1,4 +1,5 @@
 from os import getenv, environ as env
+import os
 from pathlib import Path
 from sys import int_info
 
@@ -95,6 +96,18 @@ DATABASES = {
         "PORT": env.get("PSQL_PORT"),
     }
 }
+
+if os.environ.get('GITHUB_WORKFLOW'):
+    DATABASES = {
+        'default': {
+           'ENGINE': 'django.db.backends.postgresql',
+           'NAME': 'github_actions',
+           'USER': 'postgres',
+           'PASSWORD': 'postgres',
+           'HOST': 'localhost',
+           'PORT': 'env.get("PSQL_PORT")',
+        }
+    }
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
