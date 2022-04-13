@@ -24,7 +24,4 @@ jobs:
           docker build -t my-django-image19:2.0.0 .
       - name: Run docker containers
         run: |
-          docker-compose --env-file .env.stg up --build
-      - name: Verify network
-        run: |
-          docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" postgres_db19
+          docker-compose up --env-file .env.stg up --build
