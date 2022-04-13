@@ -58,5 +58,6 @@ jobs:
           DB_HOST: ${{ env.POSTGRES_HOST }}
           DB_DATABASE: ${{ env.POSTGRES_DB }}
           DB_PORT: 5519
+          JWT_TOKEN_TIME: 120
         run: |
           python manage.py test
